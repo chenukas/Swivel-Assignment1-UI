@@ -1,4 +1,4 @@
-import keymirror from 'keymirror';
+import keymirror from 'keymirror'
 
 export default keymirror({
     GET_EMPLOYEES: null,
