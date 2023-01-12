@@ -1,0 +1,1 @@
+export const search = (id: string = '', arr: any = []) => arr.filter((el: any) => el._id === id)[0];

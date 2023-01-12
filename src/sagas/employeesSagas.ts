@@ -4,14 +4,15 @@ import { employeesActions } from '../actions';
 import { processRequest } from '../services/Api';
 import { GET_EMPLOYEES, ADD_EMPLOYEE, UPDATE_EMPLOYEE, DELETE_EMPLOYEE } from '../constants/api';
 import { search } from '../helpers/arrayHelper';
+import { AnyAction } from 'redux';
 
-function* handleGetEmployees(action) {
+function* handleGetEmployees(action: AnyAction): any {
     try {
         const { data } = yield call(processRequest, GET_EMPLOYEES);
         if (data) {
             yield put(employeesActions.getEmployeesSuccess(data.data));
         }
-    } catch (e) {
+    } catch (e: any) {
         const { response } = e || {};
         const { data } = response || {};
         const { error } = data;
@@ -19,7 +20,7 @@ function* handleGetEmployees(action) {
     }
 }
 
-function* handleAddEmployee(action) {
+function* handleAddEmployee(action: AnyAction): any {
     try {
         const { employee } = action.payload;
         const header = { 'Accept': 'application/json' }
@@ -29,7 +30,7 @@ function* handleAddEmployee(action) {
             yield put(employeesActions.addEmployeeSuccess('Employee is added successfully'));
             yield put(employeesActions.getEmployees());
         }
-    } catch (e) {
+    } catch (e: any) {
         const { response } = e || {};
         const { data } = response || {};
         const { error } = data;
@@ -37,19 +38,19 @@ function* handleAddEmployee(action) {
     }
 }
 
-function* handleGetEmployeeById(action) {
+function* handleGetEmployeeById(action: AnyAction): any {
     try {
         const { id } = action.payload;
         const state = yield select();
         const { employeesState : { employees }} = state;
         const res = search(id, employees);
         yield put(employeesActions.getEmployeeByIdSuccess(res)); 
-    } catch (e) {
+    } catch (e: any) {
         yield put(employeesActions.getEmployeeByIdError(e));
     }
 }
 
-function* handleUpdateEmployee(action) {
+function* handleUpdateEmployee(action: AnyAction): any {
     try {
         const { id, employee } = action.payload;
         const header = { 'Accept': 'application/json' }
@@ -59,7 +60,7 @@ function* handleUpdateEmployee(action) {
             yield put(employeesActions.updateEmployeeSuccess('Employee is updated successfully'));
             yield put(employeesActions.getEmployees());
         }
-    } catch (e) {
+    } catch (e: any) {
         const { response } = e || {};
         const { data } = response || {};
         const { error } = data;
@@ -67,7 +68,7 @@ function* handleUpdateEmployee(action) {
     }
 }
 
-function* handleDeleteEmployee(action) {
+function* handleDeleteEmployee(action: AnyAction): any {
     try {
         const { id } = action.payload;
         const header = { 'Accept': 'application/json' };
@@ -76,7 +77,7 @@ function* handleDeleteEmployee(action) {
             yield put(employeesActions.deleteEmployeeSuccess('Employee is deleted successfully'));
             yield put(employeesActions.getEmployees());
         }
-    } catch (e) {
+    } catch (e: any) {
         const { response } = e || {};
         const { data } = response || {};
         const { error } = data;

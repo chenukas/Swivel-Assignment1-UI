@@ -1,8 +1,9 @@
 import { INITIAL_STATE, EMPLOYEES_ACTIONS } from "../constants";
+import { AnyAction } from 'redux';
 
 export default function employeesReducer(
-    state = INITIAL_STATE.EMPLOYEE_STATE,
-    action
+    state = INITIAL_STATE,
+    action: AnyAction
 ) {
     const { employees, employee, message, error } = action.payload || {};
 
