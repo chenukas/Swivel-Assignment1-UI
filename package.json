@@ -1,6 +1,7 @@
 {
   "name": "emp-mgt-swivel",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -13,7 +14,7 @@
     "@types/jest": "^27.0.1",
     "@types/keymirror": "^0.1.1",
     "@types/node": "^16.7.13",
-    "@types/react": "^18.0.0",
+    "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.0",
     "@types/redux-logger": "^3.0.9",
     "axios": "^1.2.0",
@@ -53,5 +54,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   }
 }
